@@ -22,7 +22,7 @@ pipeline {
 
         stage('Push to Dev') {
             when {
-                branch 'dev'
+                expression { env.GIT_BRANCH == 'origin/dev' }
             }
             steps {
                 sh '''
@@ -35,7 +35,7 @@ pipeline {
 
         stage('Push to Prod') {
             when {
-                branch 'master'
+                expression { env.GIT_BRANCH == 'origin/master' }
             }
             steps {
                 sh '''
